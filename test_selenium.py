@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def test_google_search():
+def test_form_authentication():
     # Configurer les options pour Brave
     chrome_options = Options()
     chrome_options.binary_location = r'C:\Users\rayan\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe'  # Chemin vers l'exécutable Brave
@@ -16,44 +16,47 @@ def test_google_search():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     try:
-        # Ouvrir Google
-        driver.get("https://www.google.com")
-        
-        # Attendre et accepter les conditions d'utilisation si le bouton est présent
-        try:
-            # Essayer divers sélecteurs pour le bouton d'acceptation
-            accept_button = WebDriverWait(driver, 15).until(
-                EC.element_to_be_clickable((By.XPATH, '//button[contains(text(),"J\'accepte")]'))
-            )
-            accept_button.click()
-        except Exception as e:
-            print("Le bouton d'acceptation des conditions d'utilisation n'a pas été trouvé ou ne pouvait pas être cliqué :", e)
-        
-        # Attendre que le champ de recherche soit visible
-        search_box = WebDriverWait(driver, 15).until(
-            EC.visibility_of_element_located((By.NAME, "q"))
-        )
-        
-        # Ajouter une pause pour s'assurer que l'élément est prêt
-        time.sleep(1)
-        
-        # Assurer que le champ est cliquable
-        search_box = WebDriverWait(driver, 15).until(
-            EC.element_to_be_clickable((By.NAME, "q"))
-        )
+        # Ouvrir le site
+        driver.get("https://the-internet.herokuapp.com/")
+        time.sleep(2)  # Pause pour voir le site
 
-        # Effectuer une recherche
-        search_box.send_keys("OpenAI")
-        search_box.submit()
-        
-        # Attendre que les résultats de recherche soient chargés
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.ID, "search"))
+        # Naviguer vers la page "Form Authentication"
+        driver.find_element(By.LINK_TEXT, "Form Authentication").click()
+        time.sleep(2)  # Pause pour voir la navigation
+
+        # Attendre que le champ de nom d'utilisateur soit visible
+        username_box = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "username"))
         )
-        
-        # Ajouter des assertions pour vérifier le contenu
-        assert "OpenAI" in driver.page_source, "Le terme de recherche n'a pas été trouvé dans les résultats"
+        time.sleep(2)  # Pause pour voir le champ
+
+        # Saisir le nom d'utilisateur
+        username_box.send_keys("tomsmith")
+        time.sleep(2)  # Pause pour voir la saisie du nom d'utilisateur
+
+        # Saisir le mot de passe
+        driver.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
+        time.sleep(2)  # Pause pour voir la saisie du mot de passe
+
+        # Cliquer sur le bouton de connexion
+        driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
+        time.sleep(2)  # Pause pour voir le clic
+
+        # Attendre que le message de succès soit visible
+        success_message = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".flash.success"))
+        )
+        time.sleep(2)  # Pause pour voir le message de succès
+
+        # Vérifier que la connexion a réussi
+        assert "You logged into a secure area!" in success_message.text, "Échec de la connexion"
+
+        print("Test réussi : Connexion effectuée avec succès.")
     
     finally:
         # Fermer le navigateur
         driver.quit()
+
+# Exécuter le test
+if __name__ == "__main__":
+    test_form_authentication()
