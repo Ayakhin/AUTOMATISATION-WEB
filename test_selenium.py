@@ -22,7 +22,7 @@ def test_form_authentication():
 
         username_box = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.ID, "username"))
-        )
+        )   
         time.sleep(2)  
 
         username_box.send_keys("tomsmith")
@@ -46,6 +46,5 @@ def test_form_authentication():
     finally:
         driver.quit()
 
-# Exécuter le test
 if __name__ == "__main__":
     test_form_authentication()
