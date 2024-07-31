@@ -14,7 +14,7 @@ Brave Browser
 Installation
 
 Cloner le dépôt
-git clone https://github.com/votre-utilisateur/votre-repo.git
+git clone https://github.com/Ayakhin/AUTOMATISATION-WEB.git
 cd votre-repo
 Créer un environnement virtuel
 python -m venv venv
