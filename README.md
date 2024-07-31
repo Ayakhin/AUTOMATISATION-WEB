@@ -1,6 +1,4 @@
 # AUTOMATISATION-WEB
-Automatisation avec selenium et cypress
-
 
 Test d'authentification avec Selenium et Brave
 Ce projet contient un test automatisé pour vérifier l'authentification sur le site The Internet en utilisant Selenium et le navigateur Brave.
