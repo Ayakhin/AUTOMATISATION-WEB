@@ -14,3 +14,11 @@ __pycache__/*
 # Fichiers spécifiques au système
 .DS_Store
 Thumbs.db
+
+# Dépendances de Node.js
+node_modules/
+
+# Répertoires Cypress
+cypress/screenshots/
+cypress/videos/
+cypress/reports/
