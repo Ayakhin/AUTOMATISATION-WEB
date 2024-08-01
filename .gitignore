@@ -1,12 +1,15 @@
 # Environnements virtuels
 venv/
+venv/*
 
 # Fichiers Python générés
 __pycache__/
 *.py[cod]
+__pycache__/*
 
 # Caches de test
 .pytest_cache/
+.pytest_cache/*
 
 # Fichiers spécifiques au système
 .DS_Store
