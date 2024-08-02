@@ -45,7 +45,7 @@ export default defineConfig({
     browser: 'brave',  // Assurez-vous que le navigateur Brave est configuré correctement
   },
 });
-
+```
 Pour exécuter les tests avec Cypress, utilisez la commande suivante :
 npx cypress open
 
