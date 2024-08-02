@@ -10,7 +10,10 @@
     "types": ["cypress"],
     "lib": ["ESNext", "DOM"]
   },
-  "include": ["cypress/**/*.ts"],
+  "include": [
+    "cypress/**/*.ts",
+    "cypress/cypress.d.ts" // Assurez-vous que ce fichier est bien inclus
+  ],
   "exclude": [
     "node_modules",
     "cypress/videos",

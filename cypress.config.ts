@@ -6,10 +6,9 @@ export default defineConfig({
       // implement node event listeners here
     },
     specPattern: 'cypress/integration/**/*.spec.ts',
-    supportFile: false,
+    supportFile: 'cypress/support/index.ts',
     fixturesFolder: 'cypress/fixtures',
     screenshotsFolder: 'cypress/screenshots',
     videosFolder: 'cypress/videos',
-    // pluginsFile: 'cypress/plugins/index.js', // assurez-vous que cette ligne est présente ou laissez par défaut
   },
 });
