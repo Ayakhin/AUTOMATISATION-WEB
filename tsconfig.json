@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "types": ["cypress"],
+    "lib": ["ESNext", "DOM"]
+  },
+  "include": ["cypress/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "cypress/videos",
+    "cypress/screenshots"
+  ]
+}
