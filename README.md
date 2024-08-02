@@ -1,36 +1,57 @@
 # AUTOMATISATION-WEB
 
-Test d'authentification avec Selenium et Brave
-Ce projet contient un test automatisé pour vérifier l'authentification sur le site The Internet en utilisant Selenium et le navigateur Brave.
+Test d'authentification avec Cypress et Brave
 
-Prérequis
+Ce projet contient un test automatisé pour vérifier l'authentification sur le site The Internet en utilisant Cypress et le navigateur Brave.
+
+## Prérequis
+
 Avant de pouvoir exécuter ce test, vous devez installer les outils et bibliothèques suivants :
 
-Python 3.7+
-pip
-Google Chrome (Brave est basé sur Chromium)
-Brave Browser
+- Node.js (version 16 ou ultérieure recommandée)
+- npm (généralement inclus avec Node.js)
+- Brave Browser
 
-Installation
+## Installation
 
-Cloner le dépôt
-git clone https://github.com/Ayakhin/AUTOMATISATION-WEB.git
-cd votre-repo
-Créer un environnement virtuel
-python -m venv venv
-source venv/bin/activate  # Pour Windows, utilisez `venv\Scripts\activate`
-Installer les dépendances
+1. Cloner le dépôt :
+    ```bash
+    git clone https://github.com/Ayakhin/AUTOMATISATION-WEB.git
+    cd AUTOMATISATION-WEB
+    ```
 
-pip install -r requirements.txt
-Configuration
-Assurez-vous que Brave est installé sur votre machine. Ensuite, mettez à jour le chemin vers l'exécutable Brave dans le script de test si nécessaire :
+2. Installer les dépendances :
+    ```bash
+    npm install
+    ```
 
-Copier le code
-chrome_options.binary_location = r'C:\Users\votre-utilisateur\AppData\Local\BraveSoftware\Brave-Browser\Application\brave.exe'
-Exécution du test
-Pour exécuter le test, utilisez la commande suivante :
+## Configuration
 
-pytest test_selenium.py
-Structure du projet
-test_selenium.py: Contient le test d'authentification automatisé.
-requirements.txt: Liste des dépendances Python nécessaires pour exécuter le test.
+Assurez-vous que Brave est installé sur votre machine. Ensuite, vous pouvez configurer Cypress pour utiliser Brave en modifiant le fichier `cypress.config.ts` :
+
+```typescript
+import { defineConfig } from 'cypress';
+
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // configure node event listeners here
+    },
+    specPattern: 'cypress/integration/**/*.spec.ts',
+    supportFile: false,
+    fixturesFolder: 'cypress/fixtures',
+    screenshotsFolder: 'cypress/screenshots',
+    videosFolder: 'cypress/videos',
+    browser: 'brave',  // Assurez-vous que le navigateur Brave est configuré correctement
+  },
+});
+
+Pour exécuter les tests avec Cypress, utilisez la commande suivante :
+npx cypress open
+
+Pour exécuter les tests en mode headless (sans interface graphique), utilisez :
+npx cypress run
+
+
+Ce README reflète l'utilisation de Cypress et fournit des instructions pour l'installation, la configuration, et l'exécution des tests. Assurez-vous que les chemins et les détails spécifiques à votre configuration sont corrects.
+
